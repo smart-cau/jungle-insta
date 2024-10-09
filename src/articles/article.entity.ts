@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseTimeEntity } from '~/src/common/entities/baseTimeEntity';
 import { User } from '~/src/auth/user.entity';
+import { Comment } from '~/src/comments/comment.entity';
 
 @Entity()
 export class Article extends BaseTimeEntity {
@@ -16,4 +17,7 @@ export class Article extends BaseTimeEntity {
     createForeignKeyConstraints: false,
   })
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.article)
+  comments: Comment[];
 }
