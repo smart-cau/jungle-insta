@@ -1,7 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as config from 'config';
 import { DbConfig } from '~/types/config.types';
-import { User } from '~/src/entities/user.entity';
 
 const dbConfig: DbConfig = config.get('db');
 
@@ -12,8 +11,7 @@ export const TypeOrmConfig: TypeOrmModuleOptions = {
   username: process.env.RDS_USERNAME || dbConfig.username,
   password: process.env.RDS_PASSWORD || dbConfig.password,
   database: process.env.RDS_DATABASE || dbConfig.database,
-  // autoLoadEntities: true,
-  entities: [User],
+  autoLoadEntities: true,
   synchronize: dbConfig.synchronize,
   useUTC: false,
 };
