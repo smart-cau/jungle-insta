@@ -6,16 +6,16 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export class CommonEntity extends BaseEntity {
+export class BaseTimeEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @CreateDateColumn({ type: 'timestamp without time zone' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp without time zone', nullable: true })
+  @UpdateDateColumn({ type: 'timestamp without time zone' })
   updatedAt: Date;
 
   @DeleteDateColumn({ type: 'timestamp without time zone', nullable: true })
-  deletedAt: Date;
+  deletedAt: Date | null;
 }
